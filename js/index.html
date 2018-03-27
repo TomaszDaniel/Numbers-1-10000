@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--<link rel="stylesheet" href="css/style.css">-->
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <title>CodersLab</title>
+</head>
+<body>
+
+    <form method="post" action="">
+        <div>
+            <label>Podaj Liczbę:</label>
+            <input type="text" name="number">
+        </div>
+        <div>
+            <input type="submit" value="Wyślij">
+        </div>
+    </form>
+
+    <ul></ul>
+
+    <script>
+
+        var list = $('ul');
+
+        function addToHTML(element) {
+                var newLi = document.createElement('li');
+                newLi.innerText = element;
+                list.append(newLi);
+        };
+
+
+        $('form').submit(function (e) {
+            e.preventDefault();
+            var $form = $(this);
+            $.ajax({
+                type: 'POST',
+                url: $form.attr('action'),
+                data: $form.serialize()
+                }).done(function(res){
+                    addToHTML(res);
+                }).fail(function(){
+                    console.log('failure');
+                })
+        });
+
+    </script>
+
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+</body>
+</html>
