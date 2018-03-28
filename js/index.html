@@ -13,7 +13,6 @@
     <script>
 
         var list = $('ul');
-        var button = $('input');
         var a = 10000;
         var b = 1;
         var myNumber = Math.floor(Math.random() *(a-b+1)+b);
@@ -40,7 +39,6 @@
                 winLi = document.createElement('h1');
                 winLi.innerText = element.text;
                 list.append(winLi);
-                button.css('display', 'none');
                 clearInterval(intervalId);
             }
 
