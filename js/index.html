@@ -8,10 +8,6 @@
 </head>
 <body>
 
-    <form>
-            <input type="submit" value="Losuj">
-    </form>
-
     <ul></ul>
 
     <script>
@@ -45,14 +41,14 @@
                 winLi.innerText = element.text;
                 list.append(winLi);
                 button.css('display', 'none');
+                clearInterval(intervalId);
             }
 
             myNumber = Math.floor(Math.random() *(a-b+1)+b)
         };
 
 
-        $('form').submit(function (e) {
-            e.preventDefault();
+        var intervalId = setInterval(function(){
         $.ajax({
             type: 'POST',
             url: "",
@@ -62,8 +58,7 @@
             addToHTML(res);
         }).fail(function(){
             console.log('failure');
-        })
-        });
+        })},100);
 
 
     </script>
