@@ -15,17 +15,29 @@ app.get('/',function(req,res){
 app.listen(3000);
 
 app.post('',function(req,res){
-    var userNumber = Number(req.body.number);
-    // console.log(typeof userNumber)
 
-    // if(number !== 'number'){
-    //     res.send('To nie jest liczba!')}
+    var userNumber = Number(req.body.myNumber);
 
         if(randomNumber > userNumber){
-            res.send('Liczba ' +userNumber+ ' jest mniejsza niż szukana liczba');
+            var obj1 = {
+                    "id": "1",
+                    "number": randomNumber,
+                    "text": 'Liczba ' +userNumber+ ' jest mniejsza niż szukana liczba'
+            }
+            res.send(obj1);
         }else if (randomNumber < userNumber){
-            res.send('Liczba ' +userNumber+ ' jest większa niż szukana liczba');
-        }else {
-            res.send('Brawo, udało ci się odgadnąć liczbę');
+            var obj2 = {
+                    "id": "2",
+                    "number": randomNumber,
+                    "text": 'Liczba ' +userNumber+ ' jest większa niż szukana liczba'
+            }
+            res.send(obj2);
+        } else {
+            var obj3 = {
+                    "id": "3",
+                    "number": randomNumber,
+                    "text": 'Brawo, szukana liczba to: ' +randomNumber
+            }
+            res.send(obj3);
         }
 });

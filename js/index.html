@@ -8,14 +8,8 @@
 </head>
 <body>
 
-    <form method="post" action="">
-        <div>
-            <label>Podaj Liczbę:</label>
-            <input type="text" name="number">
-        </div>
-        <div>
-            <input type="submit" value="Wyślij">
-        </div>
+    <form>
+            <input type="submit" value="Losuj">
     </form>
 
     <ul></ul>
@@ -23,27 +17,51 @@
     <script>
 
         var list = $('ul');
+        var button = $('input');
+        var a = 10000;
+        var b = 1;
+        var myNumber = Math.floor(Math.random() *(a-b+1)+b);
+
 
         function addToHTML(element) {
+
+            console.log(myNumber,'to jest myNumber')
+            console.log(element.number,'to jest random szukany')
+            if (element.id == "1"){
                 var newLi = document.createElement('li');
-                newLi.innerText = element;
+                newLi.innerText = element.text;
                 list.append(newLi);
+                b = myNumber
+            } else if(element.id == "2"){
+                var newLi = document.createElement('li');
+                newLi.innerText = element.text;
+                list.append(newLi);
+                a = myNumber
+            } else{
+                var win = document.createElement('h1');
+                win.innerText = element.text;
+                list.append(win);
+                button.css('display', 'none');
+            }
+
+            myNumber = Math.floor(Math.random() *(a-b+1)+b)
         };
 
 
         $('form').submit(function (e) {
             e.preventDefault();
-            var $form = $(this);
-            $.ajax({
-                type: 'POST',
-                url: $form.attr('action'),
-                data: $form.serialize()
-                }).done(function(res){
-                    addToHTML(res);
-                }).fail(function(){
-                    console.log('failure');
-                })
+        $.ajax({
+            type: 'POST',
+            url: "",
+            data: {myNumber}
+        }).done(function(res){
+            console.log(res)
+            addToHTML(res);
+        }).fail(function(){
+            console.log('failure');
+        })
         });
+
 
     </script>
 
