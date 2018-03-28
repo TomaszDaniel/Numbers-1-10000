@@ -21,6 +21,9 @@
         var a = 10000;
         var b = 1;
         var myNumber = Math.floor(Math.random() *(a-b+1)+b);
+        var lessLi;
+        var moreLi;
+        var winLi;
 
 
         function addToHTML(element) {
@@ -28,19 +31,19 @@
             console.log(myNumber,'to jest myNumber')
             console.log(element.number,'to jest random szukany')
             if (element.id == "1"){
-                var newLi = document.createElement('li');
-                newLi.innerText = element.text;
-                list.append(newLi);
+                lessLi = document.createElement('li');
+                lessLi.innerText = element.text;
+                list.append(lessLi);
                 b = myNumber
             } else if(element.id == "2"){
-                var newLi = document.createElement('li');
-                newLi.innerText = element.text;
-                list.append(newLi);
+                moreLi = document.createElement('li');
+                moreLi.innerText = element.text;
+                list.append(moreLi);
                 a = myNumber
             } else{
-                var win = document.createElement('h1');
-                win.innerText = element.text;
-                list.append(win);
+                winLi = document.createElement('h1');
+                winLi.innerText = element.text;
+                list.append(winLi);
                 button.css('display', 'none');
             }
 
