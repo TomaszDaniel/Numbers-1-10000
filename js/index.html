@@ -2,51 +2,59 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!--<link rel="stylesheet" href="css/style.css">-->
+    <link rel="stylesheet" href="/style.css">
     <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
     <title>CodersLab</title>
 </head>
 <body>
 
-    <ul></ul>
+            <h1>Serwer wylosował liczbę</h1>
 
-    <script>
+                <div class="trzy"></div>
+                <div class="less">Mniejsze liczby</div>
+                <div class="more">Większe liczby</div>
 
-        var list = $('ul');
-        var a = 10000;
-        var b = 1;
-        var myNumber = Math.floor(Math.random() *(a-b+1)+b);
-        var lessLi;
-        var moreLi;
-        var winLi;
+<script>
 
-
-        function addToHTML(element) {
-
-            console.log(myNumber,'to jest myNumber')
-            console.log(element.number,'to jest random szukany')
-            if (element.id == "1"){
-                lessLi = document.createElement('li');
-                lessLi.innerText = element.text;
-                list.append(lessLi);
-                b = myNumber
-            } else if(element.id == "2"){
-                moreLi = document.createElement('li');
-                moreLi.innerText = element.text;
-                list.append(moreLi);
-                a = myNumber
-            } else{
-                winLi = document.createElement('h1');
-                winLi.innerText = element.text;
-                list.append(winLi);
-                clearInterval(intervalId);
-            }
-
-            myNumber = Math.floor(Math.random() *(a-b+1)+b)
-        };
+    var list = $('.trzy');
+    var less = $('.less');
+    console.log(list);
+    var more = $('.more');
+    var a = 10000;
+    var b = 1;
+    var myNumber = Math.floor(Math.random() *(a-b+1)+b);
+    var lessLi;
+    var moreLi;
+    var winLi;
 
 
-        var intervalId = setInterval(function(){
+    function addToHTML(element) {
+
+        // console.log(myNumber,'to jest myNumber')
+        // console.log(element.number,'to jest random szukany')
+        if (element.id == "1"){
+            lessLi = document.createElement('div');
+            lessLi.innerText = element.text;
+            less.append(lessLi);
+            lessLi.classList.add('jeden');
+            b = myNumber
+        } else if(element.id == "2"){
+            moreLi = document.createElement('div');
+            moreLi.innerText = element.text;
+            more.append(moreLi);
+            moreLi.classList.add('dwa');
+            a = myNumber
+        } else{
+            list.text(element.text);
+            list.css("background-color","gold");
+            clearInterval(intervalId);
+        }
+
+        myNumber = Math.floor(Math.random() *(a-b+1)+b)
+    };
+
+
+    var intervalId = setInterval(function(){
         $.ajax({
             type: 'POST',
             url: "",
@@ -59,8 +67,8 @@
         })},100);
 
 
-    </script>
+</script>
 
-    <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
 </body>
 </html>

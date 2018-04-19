@@ -8,6 +8,8 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use(bodyParser.json())
 
+app.use(express.static(path.join(__dirname, 'css')));
+
 app.get('/',function(req,res){
     res.sendFile(path.join(__dirname+'/index.html'));
 });
@@ -18,26 +20,26 @@ app.post('',function(req,res){
 
     var userNumber = Number(req.body.myNumber);
 
-        if(randomNumber > userNumber){
-            var obj1 = {
-                    "id": "1",
-                    "number": randomNumber,
-                    "text": 'Liczba ' +userNumber+ ' jest mniejsza niż szukana liczba'
-            }
-            res.send(obj1);
-        }else if (randomNumber < userNumber){
-            var obj2 = {
-                    "id": "2",
-                    "number": randomNumber,
-                    "text": 'Liczba ' +userNumber+ ' jest większa niż szukana liczba'
-            }
-            res.send(obj2);
-        } else {
-            var obj3 = {
-                    "id": "3",
-                    "number": randomNumber,
-                    "text": 'Brawo, szukana liczba to: ' +randomNumber
-            }
-            res.send(obj3);
+    if(randomNumber > userNumber){
+        var obj1 = {
+            "id": "1",
+            "number": randomNumber,
+            "text": userNumber
         }
+        res.send(obj1);
+    }else if (randomNumber < userNumber){
+        var obj2 = {
+            "id": "2",
+            "number": randomNumber,
+            "text": userNumber
+        }
+        res.send(obj2);
+    } else {
+        var obj3 = {
+            "id": "3",
+            "number": randomNumber,
+            "text": randomNumber
+        }
+        res.send(obj3);
+    }
 });
