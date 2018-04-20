@@ -1,16 +1,16 @@
 # Numbers-1-10000
 
-<h3>Technologies used
+<h3>Technologies used</h3>
 
 <ul>
-<li>JavaScript
-<li>CSS 
-<li>HTML
-<li>node.js
-<li>express.js
+<li>JavaScript</li>
+<li>CSS </li>
+<li>HTML</li>
+<li>node.js</li>
+<li>express.js</li>
 </ul>
 
-<h3>Launch</h4>
+<h3>Launch</h3>
 
     npm install 
     
