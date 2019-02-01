@@ -1,44 +1,39 @@
-var express = require("express");
-var path    = require("path");
-var bodyParser = require('body-parser')
-var app = express()
-var randomNumber = Math.floor(Math.random() * 10000) + 1;
+const express = require("express");
+const bodyParser = require('body-parser')
+const app = express()
+const randomNumber = Math.floor(Math.random() * 10000) + 1;
 
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({
+    extended: false
+}))
 
 app.use(bodyParser.json())
 
 app.use(express.static(__dirname + '/public'));
 
-app.get('/',function(req,res){
-    res.sendFile(path.join(__dirname+'/index.html'));
-});
-
 app.listen(3000);
 
-app.post('',function(req,res){
-
-    var userNumber = Number(req.body.myNumber);
-
-    if(randomNumber > userNumber){
-        var obj1 = {
+app.post('', function (req, res) {
+    const userNumber = Number(req.body.myNumber);
+    if (randomNumber > userNumber) {
+        const obj1 = {
             "id": "1",
             "number": randomNumber,
             "text": userNumber
         }
         res.send(obj1);
-    }else if (randomNumber < userNumber){
-        var obj2 = {
+    } else if (randomNumber < userNumber) {
+        const obj2 = {
             "id": "2",
             "number": randomNumber,
             "text": userNumber
         }
         res.send(obj2);
     } else {
-        var obj3 = {
+        const obj3 = {
             "id": "3",
             "number": randomNumber,
-            "text": randomNumber
+            "text": userNumber
         }
         res.send(obj3);
     }
