@@ -12,7 +12,7 @@
              $(lessDiv).text(element.text);
              $('body').append(lessDiv);
              $(lessDiv).addClass('one');
-             lessDiv.style.top = "calc(100vh-60px)"
+             $(lessDiv).css("animation-duration", `${Math.floor(Math.random() * 11)+5}s`);
              lessDiv.style.left = `${Math.floor(Math.random() * 96)}vw`
              b = myNumber
          } else if (element.id == "2") {
@@ -20,7 +20,7 @@
              $(moreDiv).text(element.text);
              $('body').append(moreDiv);
              $(moreDiv).addClass('two');
-             moreDiv.style.top = "calc(100vh-60px)"
+             $(moreDiv).css("animation-duration", `${Math.floor(Math.random() * 11)+5}s`);
              moreDiv.style.left = `${Math.floor(Math.random() * 96)}vw`
              a = myNumber
          } else {
