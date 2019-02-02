@@ -6,47 +6,76 @@ div {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-}
-
-.less {
-  float: left;
-  text-align: center;
-  line-height: 50px;
-}
-
-.more {
-  float: right;
   text-align: center;
   line-height: 50px;
 }
 
 .one {
+  position: absolute;
+  bottom: 0;
+  left: calc(50%+-70px);
   color: blue;
   background-color: cyan;
   border: 5px solid blue;
+  animation: lessMore 12s linear forwards;
 }
 
 .two {
+  position: absolute;
+  bottom: 0;
+  left: calc(50%+70px);
   color: green;
   background-color: greenyellow;
   border: 5px solid green;
+  animation: lessMore 8s linear forwards;
 }
 
 .numberDiv {
-  color: red;
-  font-size: 22px;
-  background-color: gold;
-  border: 10px solid silver;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%);
   width: 100px;
   height: 100px;
-  position: absolute;
-  transform: translate(-50px);
-  left: 50%;
+  background-color: gold;
+  border: 10px solid silver;
   text-align: center;
   line-height: 100px;
-
+  font-size: 22px;
+  color: red;
+  opacity: 0;
+  animation: score 6s linear forwards;
 }
 
 h1 {
   text-align: center;
+}
+
+@keyframes score {
+  0% {
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 0.5;
+    box-shadow: 0 0 2px 2px gold;
+  }
+
+  60% {
+    opacity: 1;
+
+  }
+
+  100% {
+    opacity: 1;
+    bottom: 75vh;
+    box-shadow: 0 0 18px 18px gold;
+  }
+}
+
+@keyframes lessMore {
+  100% {
+    opacity: 0;
+    bottom: 85vh;
+  }
 }

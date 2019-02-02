@@ -1,49 +1,52 @@
-       const main = $('.numberDiv');
-       const less = $('.less');
-       const more = $('.more');
-       let a = 10000;
-       let b = 1;
-       let myNumber = Math.floor(Math.random() * (a - b + 1) + b);
-       let lessDiv;
-       let moreDiv;
-       let myNumbers = [];
+ let a = 10000;
+ let b = 1;
+ let myNumber = Math.floor(Math.random() * (a - b + 1) + b);
+ let lessDiv;
+ let moreDiv;
+ let myNumbers = [];
 
+ function addToHTML(element) {
+     if (myNumbers.indexOf(element.text) == -1) {
+         if (element.id == "1") {
+             lessDiv = document.createElement('div');
+             $(lessDiv).text(element.text);
+             $('body').append(lessDiv);
+             $(lessDiv).addClass('one');
+             lessDiv.style.top = "calc(100vh-60px)"
+             lessDiv.style.left = `${Math.floor(Math.random() * 96)}vw`
+             b = myNumber
+         } else if (element.id == "2") {
+             moreDiv = document.createElement('div');
+             $(moreDiv).text(element.text);
+             $('body').append(moreDiv);
+             $(moreDiv).addClass('two');
+             moreDiv.style.top = "calc(100vh-60px)"
+             moreDiv.style.left = `${Math.floor(Math.random() * 96)}vw`
+             a = myNumber
+         } else {
+             numberDiv = document.createElement('div')
+             $('body').append(numberDiv);
+             $(numberDiv).addClass('numberDiv');
+             setTimeout(function () {
+                 $(numberDiv).text(element.text);
+             }, 6000);
+             clearInterval(intervalId);
+         }
+     }
+     myNumbers.push(myNumber)
+     myNumber = Math.floor(Math.random() * (a - b + 1) + b)
+ };
 
-       function addToHTML(element) {
-           console.log(myNumber);
-           if (myNumbers.indexOf(element.text) == -1) {
-               if (element.id == "1") {
-                   lessDiv = document.createElement('div');
-                   $(lessDiv).text(element.text);
-                   less.append(lessDiv);
-                   $(lessDiv).addClass('one');
-                   b = myNumber
-               } else if (element.id == "2") {
-                   moreDiv = document.createElement('div');
-                   $(moreDiv).text(element.text);
-                   more.append(moreDiv);
-                   $(moreDiv).addClass('two');
-                   a = myNumber
-               } else {
-                   main.text(element.text);
-                   clearInterval(intervalId);
-               }
-           }
-           myNumbers.push(myNumber)
-           myNumber = Math.floor(Math.random() * (a - b + 1) + b)
-       };
-
-
-       const intervalId = setInterval(function () {
-           $.ajax({
-               type: 'POST',
-               url: "",
-               data: {
-                   myNumber
-               }
-           }).done(function (res) {
-               addToHTML(res);
-           }).fail(function () {
-               console.log('failure');
-           })
-       }, 100);
+ const intervalId = setInterval(function () {
+     $.ajax({
+         type: 'POST',
+         url: "",
+         data: {
+             myNumber
+         }
+     }).done(function (res) {
+         addToHTML(res);
+     }).fail(function () {
+         console.log('failure');
+     })
+ }, 500);
